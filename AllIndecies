@@ -1,0 +1,31 @@
+public class allIndecisOfNumber {
+   static int i=0;
+    static int ar[]=new int[10];
+    public static void main(String[] args) {
+        int a[]={1,2,5,4,5};
+        int ar1[]=find(a,5);
+        for(Integer ele:ar1)
+        {
+            System.out.println(ele);
+        }
+    }
+    public static int[] find(int[] a, int n)
+    {
+        return find(a,n,0);
+    }
+    private static int[] find(int a[],int n,int Start)
+    {
+
+        int length=a.length;
+        if(Start==length)
+        {
+            return ar;
+        }
+        if(a[Start]==n) {
+            ar[i] = Start;
+            i++;
+        }
+        return find(a,n,Start+1);
+
+    }
+}
