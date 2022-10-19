@@ -1,0 +1,23 @@
+typedef long long ll;
+class Solution {
+    vector<vector<ll>> dp;
+    public:
+    ll fn(int sum,int M,int i,int N){
+        if(i==N)
+            return sum==0;
+        if(sum<=0)
+            return 0;
+        if(dp[i][sum]==-1){
+            ll ans=0;
+            for(int j=1;j<=M;j++)
+                ans+=fn(sum-j,M,i+1,N);
+            dp[i][sum]=ans;
+        }
+        return dp[i][sum];
+        
+    }
+    long long noOfWays(int M , int N , int X) {
+        dp.resize(N,vector<ll>(X+1,-1));
+        return fn(X,M,0,N);
+    }
+};
