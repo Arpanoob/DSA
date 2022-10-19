@@ -1,0 +1,27 @@
+int solve(int i ,int flag, int last , vector<int> &nums , vector<vector<int>> &dp){
+	        if(i==nums.size())
+	            return 0;
+	        if(dp[i][flag]!=-1)
+	        return dp[i][flag];
+	        int ans = 0;
+	        if(flag){
+	            for(int j = i ; j<nums.size() ; j++){
+	                if(nums[j]>last){
+	                    ans = max(ans , 1 + solve(j+1 , !flag , nums[j] , nums , dp));
+	                }
+	            }
+	            return dp[i][flag] = ans;
+	        }
+	        else {
+	            for(int j = i ; j<nums.size() ; j++){
+	                if(nums[j]<last){
+	                    ans = max(ans , 1 + solve(j+1 , !flag , nums[j] , nums , dp));
+	                }
+	            }
+	            return dp[i][flag] = ans;
+	        }
+	    }
+		int ZigZagMaxLength(vector<int>&nums){
+		    vector<vector<int>> dp(nums.size() , vector<int>(2 , -1));
+		    return max(solve(0,1,-1,nums,dp),solve(0,0,INT_MAX,nums,dp));
+		}
